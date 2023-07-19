@@ -4,3 +4,19 @@
   justify-content: center;
   align-items: center;
 }
+
+.buttonlogin {
+  font-family: var(--font-dm);;
+  background-color: #1db954;
+  color: white;
+  padding: 15px 25px;
+  font-size: 25px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.buttonlogin:hover {
+  background-color: #0f813c;
+}

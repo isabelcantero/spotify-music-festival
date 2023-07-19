@@ -1,8 +1,8 @@
-'use client'
+//'use client'
 import styles from './page.module.css'
-import {redirectToAuthCodeFlow, getAccessToken} from '../../scripts/auth.js'
+import { getAccessToken} from '../../scripts/auth.js'
 import { useRouter } from 'next/navigation';
-import { getProfile, getTopArtists } from '../api/route.js'
+import { getProfile, getTopArtists } from '@/app/api/profile/route.js'
 
 async function fetchData () {
     const accessToken = await getAccessToken(clientId, code);
@@ -49,23 +49,44 @@ function populateUI(profile, topArtists) {
   document.getElementById("top-artists").innerText = topArtists;
 }
 
-export default function Page() {
+export default async function Dashboard() {
   const clientId = "7d773b9ed08a46a5b34fd05b0661a40e"; // Replace with your client ID
+  //console.log('Hola');
+  //console.log(code);
+
+  /*
   const router = useRouter();
   const params = new URLSearchParams(router.query);
   const code = params.get("code");
-
-  if (!code) {
-    redirectToAuthCodeFlow(clientId);
-  } else {
+  */
+  /*
+  if (code) {
     fetchData();
-  }
+  }*/
 
+  /*
+  <section id="profile">
+        <h2>Logged in as <span id="displayName"></span></h2>
+        <ul>
+            <li>User ID: <span id="id"></span></li>
+            <li>Spotify URI: <a id="uri" href="#"></a></li>
+            <li>Link: <a id="url" href="#"></a></li>
+        </ul>
+      </section>
+
+      <h2>Top Artists:</h2>
+      <section id="top-artists">
+
+      </section>
+  */
+  
 
   return (
     <main className={styles.main}>
       <h1>Your Spotify Music Festival</h1>
+      <h1>Welcome </h1>
 
+      <h1>Your Top Artists</h1>
     </main>
   )
 }
