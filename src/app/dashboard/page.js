@@ -49,10 +49,8 @@ function populateUI(profile, topArtists) {
   document.getElementById("top-artists").innerText = topArtists;
 }
 
-export default async function Dashboard() {
+export default async function Dashboard(props) {
   const clientId = "7d773b9ed08a46a5b34fd05b0661a40e"; // Replace with your client ID
-  //console.log('Hola');
-  //console.log(code);
 
   /*
   const router = useRouter();
@@ -79,7 +77,6 @@ export default async function Dashboard() {
 
       </section>
   */
-  
 
   return (
     <main className={styles.main}>
