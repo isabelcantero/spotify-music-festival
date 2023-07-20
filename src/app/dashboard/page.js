@@ -1,4 +1,4 @@
-'use client'
+//'use client'
 import styles from './page.module.css'
 import { getAccessToken} from '../../scripts/auth.js'
 import { useRouter } from 'next/navigation';
@@ -64,46 +64,27 @@ async function fetchTopArtists(token, type, timeRange, limit) {
   return await result.json();
 }
 
-export async function getServerSideProps(context) {
-  const { req } = context;
-  const cookies = req.headers.cookie;
-  const accessToken = cookies.split(';').find(c => c.trim().startsWith('access_token=')).split('=')[1];
-  return {
-    props: {
-      accessToken
-    }
-  }
-}
+export default async function Dashboard(props) {
+  //const { accessToken } = props;
 
-export default function Dashboard(props) {
-  const { accessToken } = props;
-
-  const router = useRouter();
-  router.push('/dashboard');
-  console.log(accessToken);
+  const code = props.searchParams.code;
 
   /*
-  <section id="profile">
-        <h2>Logged in as <span id="displayName"></span></h2>
-        <ul>
-            <li>User ID: <span id="id"></span></li>
-            <li>Spotify URI: <a id="uri" href="#"></a></li>
-            <li>Link: <a id="url" href="#"></a></li>
-        </ul>
-      </section>
+  if (code) {
+    const accessToken = await getAccessToken(code);
+    console.log(accessToken);
+    //router.push('/dashboard');
+  }*/
 
-      <h2>Top Artists:</h2>
-      <section id="top-artists">
-
-      </section>
-  */
+  const accessToken = await getAccessToken(code);
+  console.log(accessToken);
 
   return (
     <main className={styles.main}>
       <h1>Your Spotify Music Festival</h1>
       <h1>Welcome </h1>
 
-      <h3>Access token: {accessToken}</h3>
+      <h3>AT: {accessToken}</h3>
 
       <h1>Your Top Artists</h1>
     </main>

@@ -1,7 +1,7 @@
-const clientId = '7d773b9ed08a46a5b34fd05b0661a40e';
-const clientSecret = 'f5c6caf73b2942229419b9f5d0a847e0';
+const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
+const clientSecret = process.env.NEXT_PUBLIC_CLIENT_SECRET;
 //const redirect_uri = 'http://localhost:3000';
-const redirect_uri = 'http://localhost:3000/dashboard';
+const redirect_uri = process.env.NEXT_PUBLIC_REDIRECT_URI;
 
 async function redirectToAuthCodeFlow() {
     const params = new URLSearchParams();
@@ -25,7 +25,8 @@ async function getAccessToken(code) {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Basic ' + (new Buffer.from(clientId + ':' + clientSecret).toString('base64'))
         },
-        body: params
+        body: params/*,
+        cache: 'no-store'*/
     })
 
     const { access_token } = await result.json();

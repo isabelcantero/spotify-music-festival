@@ -2,7 +2,7 @@
 import styles from '../app/page.module.css'
 import { redirectToAuthCodeFlow } from '@/scripts/auth'
 
-const clientId = "2db5f2e5a78f4f4fb27ac67c138d39b2";
+const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
 
 const Login = () => {
     return ( 

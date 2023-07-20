@@ -1,15 +1,15 @@
 import styles from './page.module.css'
-import { redirectToAuthCodeFlow, getAccessToken } from '../scripts/auth.js'
+import { getAccessToken } from '../scripts/auth.js'
 //import { useRouter } from 'next/navigation';
 import Login from '@/components/Login'
 
 export default async function Welcome(props) {
   //const router = useRouter();
-  
+
   const code = props.searchParams.code;
   
   if (code) {
-    const accessToken = await getAccessToken(code);
+    const accessToken = getAccessToken(code);
     console.log(accessToken);
     //router.push('/dashboard');
   }
