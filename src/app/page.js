@@ -9,8 +9,8 @@ export default async function Welcome(props) {
   const code = props.searchParams.code;
   
   if (code) {
-    const at = await getAccessToken(code);
-    console.log(at);
+    const accessToken = await getAccessToken(code);
+    console.log(accessToken);
     //router.push('/dashboard');
   }
 

@@ -1,8 +1,7 @@
-//'use client'
+'use client'
 import styles from './page.module.css'
 import { getAccessToken} from '../../scripts/auth.js'
 import { useRouter } from 'next/navigation';
-import { getProfile, getTopArtists } from '@/app/api/profile/route.js'
 
 async function fetchData () {
     const accessToken = await getAccessToken(clientId, code);
@@ -49,18 +48,39 @@ function populateUI(profile, topArtists) {
   document.getElementById("top-artists").innerText = topArtists;
 }
 
-export default async function Dashboard(props) {
-  const clientId = "7d773b9ed08a46a5b34fd05b0661a40e"; // Replace with your client ID
+async function fetchProfile(token) {
+  const result = await fetch("https://api.spotify.com/v1/me", {
+      method: "GET", headers: { Authorization: `Bearer ${token}` }
+  });
 
-  /*
+  return await result.json();
+}
+
+async function fetchTopArtists(token, type, timeRange, limit) {
+  const result = await fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${timeRange}&limit=${limit}`, {
+      method: "GET", headers: { Authorization: `Bearer ${token}` }
+  });
+
+  return await result.json();
+}
+
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const cookies = req.headers.cookie;
+  const accessToken = cookies.split(';').find(c => c.trim().startsWith('access_token=')).split('=')[1];
+  return {
+    props: {
+      accessToken
+    }
+  }
+}
+
+export default function Dashboard(props) {
+  const { accessToken } = props;
+
   const router = useRouter();
-  const params = new URLSearchParams(router.query);
-  const code = params.get("code");
-  */
-  /*
-  if (code) {
-    fetchData();
-  }*/
+  router.push('/dashboard');
+  console.log(accessToken);
 
   /*
   <section id="profile">
@@ -82,6 +102,8 @@ export default async function Dashboard(props) {
     <main className={styles.main}>
       <h1>Your Spotify Music Festival</h1>
       <h1>Welcome </h1>
+
+      <h3>Access token: {accessToken}</h3>
 
       <h1>Your Top Artists</h1>
     </main>
