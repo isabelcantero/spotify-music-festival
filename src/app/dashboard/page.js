@@ -1,7 +1,6 @@
-//'use client'
+'use client'
 import styles from './page.module.css'
 import { getAccessToken} from '../../scripts/auth.js'
-import { useRouter } from 'next/navigation';
 
 async function fetchData () {
     const accessToken = await getAccessToken(clientId, code);
@@ -64,9 +63,7 @@ async function fetchTopArtists(token, type, timeRange, limit) {
   return await result.json();
 }
 
-export default async function Dashboard(props) {
-  //const { accessToken } = props;
-
+export default function Dashboard(props) {
   const code = props.searchParams.code;
 
   /*
@@ -76,15 +73,23 @@ export default async function Dashboard(props) {
     //router.push('/dashboard');
   }*/
 
-  const accessToken = await getAccessToken(code);
-  console.log(accessToken);
+
+/*
+  getAccessToken(code)
+    .then((accessToken) => {
+      console.log(accessToken);
+      router.replace('/dashboard', undefined, { shallow: true });
+      console.log(accessToken);
+    })
+    .catch((err) => {
+      console.log(err);
+    })*/
 
   return (
     <main className={styles.main}>
       <h1>Your Spotify Music Festival</h1>
       <h1>Welcome </h1>
 
-      <h3>AT: {accessToken}</h3>
 
       <h1>Your Top Artists</h1>
     </main>
