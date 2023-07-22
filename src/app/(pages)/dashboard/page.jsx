@@ -3,11 +3,6 @@ import { useSession } from "next-auth/react"
 import styles from './page.module.css'
 
 async function fetchData () {
-    const accessToken = await getAccessToken(clientId, code);
-
-    const profile = await fetchProfile(accessToken);
-
-    //============================================================================================
     // artists or tracks
     const type = "artists"
 
@@ -45,14 +40,6 @@ function populateUI(profile, topArtists) {
   document.getElementById("url").setAttribute("href", profile.href);
 
   document.getElementById("top-artists").innerText = topArtists;
-}
-
-async function fetchProfile(token) {
-  const result = await fetch("https://api.spotify.com/v1/me", {
-      method: "GET", headers: { Authorization: `Bearer ${token}` }
-  });
-
-  return await result.json();
 }
 
 async function fetchTopArtists(token, type, timeRange, limit) {

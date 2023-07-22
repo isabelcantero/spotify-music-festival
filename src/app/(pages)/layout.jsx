@@ -1,7 +1,7 @@
 import Providers from "@/components/Providers";
 import Header from "@/components/Header";
 import './globals.css'
-import { dm_sans } from '@/lib/utils/fonts'
+import { dm_sans } from '@/lib/fonts/fonts-google'
 
 export const metadata = {
   title: 'Spotify Music Festival',

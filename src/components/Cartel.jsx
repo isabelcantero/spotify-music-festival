@@ -1,57 +1,42 @@
 'use client'
-import { signIn, signOut, useSession } from "next-auth/react"
-import { useEffect } from "react"
-import axios from "axios"
+import { signIn, useSession } from "next-auth/react"
+import { useEffect, useState } from "react"
+import { getTopArtists } from "@/app/api/endpoints/Artists"
 
-async function fetchTopArtists(token, type, timeRange, limit) {
-  const result = await fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${timeRange}&limit=${limit}`, {
-      method: "GET", headers: { Authorization: `Bearer ${token}` }
-  });
-
-  return await result.json();
+  /*
+  type = artists or tracks;
+  timeRange = long_term (several years), medium_term (DEFAULT, 6 months), short_term (4 weeks)
+  limit = min:1, max:50, DEFAULT: 20
+  */
+async function fetchTopArtists(session, setTopArtists){
+  const type = "artists"
+  const timeRange = "long_term";
+  const limit = 15;
+  try {
+    const data = await getTopArtists(session.accessToken, type, timeRange, limit);
+    //setSave(data);
+    const items = data.items;
+    const topArtists = items.map(i => i.name);
+    setTopArtists(topArtists);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default function Cartel() {
   const { data: session } = useSession();
-
-  /*
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("https://api.spotify.com/v1/me", {
-        method: "GET", headers: { Authorization: `Bearer ${session.accessToken}` }
-        });
-      const json = await res.json()
-      console.log(json);
-    }
-    fetchData()
-  }, [session])*/
-  
+  //const [ save, setSave ] = useState();
+  const [ topArtists, setTopArtists ] = useState([]);
   
   
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://api.spotify.com/v1/me/top/artists", {
-          headers: {
-            Authorization: `Bearer ${session.accessToken}`,
-          }
-        });
-        const data = response.data;
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-
-    }
-    fetchData()
+    fetchTopArtists(session, setTopArtists);
   }, [session])
   
-
-
   return(
     <div>
     <h1>Cartel</h1>
-    <p>
+    <hr />
         {!session && (
           <>
             <span>
@@ -70,11 +55,15 @@ export default function Cartel() {
         )}
         {session?.user && (
           <>
-            <span>
-            </span>
+            <div>
+              <h1>{topArtists[0]}</h1>
+              <h2>{topArtists[1]}·{topArtists[2]}</h2>
+              <h3>{topArtists[3]}·{topArtists[4]}·{topArtists[5]}</h3>
+              <h4>{topArtists[6]}·{topArtists[7]}·{topArtists[8]}·{topArtists[9]}</h4>
+              <h5>{topArtists[10]}·{topArtists[11]}·{topArtists[12]}·{topArtists[13]}·{topArtists[14]}</h5>
+            </div>
           </>
         )}
-      </p>
     
   </div>
 )}
