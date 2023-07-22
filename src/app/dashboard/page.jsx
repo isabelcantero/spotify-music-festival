@@ -1,6 +1,6 @@
 'use client'
+import { useSession } from "next-auth/react"
 import styles from './page.module.css'
-import { getAccessToken} from '../../scripts/auth.js'
 
 async function fetchData () {
     const accessToken = await getAccessToken(clientId, code);
@@ -64,31 +64,12 @@ async function fetchTopArtists(token, type, timeRange, limit) {
 }
 
 export default function Dashboard(props) {
-  const code = props.searchParams.code;
-
-  /*
-  if (code) {
-    const accessToken = await getAccessToken(code);
-    console.log(accessToken);
-    //router.push('/dashboard');
-  }*/
-
-
-/*
-  getAccessToken(code)
-    .then((accessToken) => {
-      console.log(accessToken);
-      router.replace('/dashboard', undefined, { shallow: true });
-      console.log(accessToken);
-    })
-    .catch((err) => {
-      console.log(err);
-    })*/
+  const { data: session } = useSession();
 
   return (
     <main className={styles.main}>
       <h1>Your Spotify Music Festival</h1>
-      <h1>Welcome </h1>
+      <h1>Welcome {session.user.name}</h1>
 
 
       <h1>Your Top Artists</h1>

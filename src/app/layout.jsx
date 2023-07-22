@@ -1,5 +1,7 @@
+import Providers from "@/components/Providers";
+import Header from "@/components/Header";
 import './globals.css'
-import { dm_sans } from '../utils/fonts.js'
+import { dm_sans } from '@/lib/utils/fonts'
 
 export const metadata = {
   title: 'Spotify Music Festival',
@@ -10,16 +12,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={dm_sans.className}>
       <body>
-        {/* 
-        <nav>
-          <a href="#">Inicio</a>
-          <a href="#">Acerca de</a>
-          <a href="#">Servicios</a>
-          <a href="#">Contacto</a>
-        </nav>
-        */}
-        {children}
-        </body>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
+      </body>
     </html>
-  )
+  );
 }
