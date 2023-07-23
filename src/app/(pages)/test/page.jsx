@@ -1,8 +1,5 @@
-'use client'
-import { useSession } from "next-auth/react"
 
-export default function Data() {
-  const { data: session } = useSession();
+export default function Test() {
 
   return(
     <div>

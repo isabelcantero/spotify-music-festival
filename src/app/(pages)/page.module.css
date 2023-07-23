@@ -1,10 +1,11 @@
+/*
 .main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
+*/
 .buttonlogin {
   font-family: var(--font-dm);;
   background-color: #1db954;

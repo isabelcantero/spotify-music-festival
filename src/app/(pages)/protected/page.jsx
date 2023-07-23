@@ -1,5 +1,4 @@
 'use client'
-import Cartel from "@/components/CartelArtists"
 import AccessDenied from "@/components/AccessDenied"
 import { useSession } from "next-auth/react"
 
