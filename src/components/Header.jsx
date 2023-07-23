@@ -11,19 +11,16 @@ export default function Header() {
             <Link href="/">Home</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/dashboard">Dashboard</Link>
+            <Link href="/myfestival">MyFestival</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/test">Test</Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/test2">Test2</Link>
+            <Link href="/tracklist">Tracklist</Link>
           </li>
           <li className={styles.navItem}>
             <Link href="/protected">Protected</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/data">Data from auth</Link>
+            <Link href="/test">Test</Link>
           </li>
           <li className={styles.navItem}>
             <LogButton />

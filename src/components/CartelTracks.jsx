@@ -1,23 +1,21 @@
 'use client'
 import { signIn, useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
-import { getTopArtists } from "@/app/api/endpoints/Artists"
+import { getTopTracks } from "@/app/api/endpoints/Tracks"
 
   /*
-  type = artists or tracks;
   timeRange = long_term (several years), medium_term (DEFAULT, 6 months), short_term (4 weeks)
   limit = min:1, max:50, DEFAULT: 20
   */
-async function fetchTopArtists(session, setTopArtists){
-  const type = "artists"
+async function fetchTopTracks(token, setTopTracks){
   const timeRange = "long_term";
-  const limit = 15;
+  const limit = 21;
   try {
-    const data = await getTopArtists(session.accessToken, type, timeRange, limit);
+    const data = await getTopTracks(token, timeRange, limit);
     //setSave(data);
     const items = data.items;
-    const topArtists = items.map(i => i.name);
-    setTopArtists(topArtists);
+    const topTracks = items.map(i => i.name);
+    setTopTracks(topTracks);
   } catch (error) {
     console.log(error);
   }
@@ -26,11 +24,10 @@ async function fetchTopArtists(session, setTopArtists){
 export default function Cartel() {
   const { data: session } = useSession();
   //const [ save, setSave ] = useState();
-  const [ topArtists, setTopArtists ] = useState([]);
-  
+  const [ topTracks, setTopTracks ] = useState([]);
   
   useEffect(() => {
-    fetchTopArtists(session, setTopArtists);
+    fetchTopTracks(session.accessToken, setTopTracks);
   }, [session])
   
   return(
@@ -56,11 +53,12 @@ export default function Cartel() {
         {session?.user && (
           <>
             <div>
-              <h1>{topArtists[0]}</h1>
-              <h2>{topArtists[1]}·{topArtists[2]}</h2>
-              <h3>{topArtists[3]}·{topArtists[4]}·{topArtists[5]}</h3>
-              <h4>{topArtists[6]}·{topArtists[7]}·{topArtists[8]}·{topArtists[9]}</h4>
-              <h5>{topArtists[10]}·{topArtists[11]}·{topArtists[12]}·{topArtists[13]}·{topArtists[14]}</h5>
+              <h1>{topTracks[0]}</h1>
+              <h2>{topTracks[1]}·{topTracks[2]}</h2>
+              <h3>{topTracks[3]}·{topTracks[4]}·{topTracks[5]}</h3>
+              <h4>{topTracks[6]}·{topTracks[7]}·{topTracks[8]}·{topTracks[9]}</h4>
+              <h5>{topTracks[10]}·{topTracks[11]}·{topTracks[12]}·{topTracks[13]}·{topTracks[14]}</h5>
+              <h6>{topTracks[15]}·{topTracks[16]}·{topTracks[17]}·{topTracks[18]}·{topTracks[19]}·{topTracks[20]}</h6>
             </div>
           </>
         )}
