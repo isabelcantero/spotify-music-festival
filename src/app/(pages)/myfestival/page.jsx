@@ -1,18 +1,9 @@
-'use client'
-import { useSession } from "next-auth/react"
 import Cartel from "@/components/CartelArtists"
-import { useRouter } from "next/navigation"
 
-export default function Dashboard(props) {
-  const { data: session } = useSession();
-  const router = useRouter();
+export default function MyFestival(props) {
   
-  if(!session) {
-    router.push('/');
-  } else {
-    return (
-      <Cartel />
-    )
-  }
+  return (
+    <Cartel />
+  )
   
 }

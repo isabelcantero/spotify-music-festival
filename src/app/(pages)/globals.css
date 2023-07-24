@@ -3,6 +3,7 @@ body {
   color: #fff;
   margin: 0;
   background-color: #484848;
+  overflow-wrap: break-word;
 }
 
 main {
