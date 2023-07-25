@@ -1,6 +1,7 @@
 
 .main {
     background-image: url(/cielo-estrellado.jpg);
+    background-size: 100% 100%;
     min-width: 300px;
     min-height: 600px;
     width: calc(0.75 * (100vh - 190px));

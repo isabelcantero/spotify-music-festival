@@ -1,5 +1,5 @@
 'use client'
-import { signIn, useSession } from "next-auth/react"
+import { signIn, signOut, useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 import { getTopArtists } from "@/app/api/endpoints/Artists"
 import styles from "./styles/cartelartists.module.css"
@@ -23,6 +23,8 @@ export default function Cartel() {
   const { data: session, status } = useSession();
   const [ topArtists, setTopArtists ] = useState([]);
   const [ errors, setErrors ] = useState();
+
+  console.log(session);
   
   useEffect(() => {
     if(session){
@@ -31,9 +33,24 @@ export default function Cartel() {
   }, [session])
   
   if (status === "loading") {
-    return <p>Loading...</p>
+    return <main><div className={styles.main}></div></main>
   }
-  
+
+  if(errors){
+    const response = errors.response;
+    if(response.status == 401){
+      // 401 Unauthorized Access
+      console.log(response.data);
+      signOut();
+      signIn();
+    } else if(response.status == 403){
+      // 403 Forbidden
+      console.log(response.data);
+      signOut();
+      //signIn()
+    }
+  }
+
   return(
     <>
       {!session && (
@@ -53,6 +70,7 @@ export default function Cartel() {
         </div>
       )}
 
+      {(session?.user && (
       <main>
         <div className={styles.main}>
           <h1 className={styles.title}>{session.user.name}'s Music Festival</h1>
@@ -77,5 +95,6 @@ export default function Cartel() {
 
         </div>
       </main>
+      ))}
     </>
 )}
