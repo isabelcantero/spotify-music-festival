@@ -2,10 +2,11 @@
 .main {
     background-image: url(/cielo-estrellado.jpg);
     background-size: 100% 100%;
-    min-width: 300px;
-    min-height: 600px;
-    width: calc(0.75 * (100vh - 190px));
+
+    width: calc(0.85 * (100vh - 190px));
     height: calc(100vh - 190px);
+    /*width: 525px;
+    height: 600px;*/
     font-size: 20px;
     display: flex; 
     flex-direction: column; 
@@ -13,7 +14,7 @@
 }
 
 .title {
-    font-size: 50px;
+    font-size: 42px;
     margin: 0 auto;
     margin-bottom: 20px;
     overflow-wrap: break-word;
@@ -24,56 +25,36 @@
 
 .hr {
     background-color: white;
-    height: 3px;
+    height: 2px;
     width: 100%;
     margin: 0 auto 20px auto;
 }
 
 .artists {
-    margin: 5px 20px;
+    margin: 5px 30px;
     text-align: justify;
 }
 
 .h1 {
     margin: -2px 0px;
-    font-size: 40px;
+    font-size: 36px;
 }
 
 .h2 {
     margin: -1px 0px;
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .h3 {
     margin: 1px 0px;
+    font-size: 22px;
 }
 
 .h4 {
     margin: 2px 0px;
+    font-size: 18px;
 }
 
-.h5 {
-    margin: 3px 0px;
-}
-
-.h6 {
-    margin: 4px 0px;
-}
-
-.h7 {
-    margin: 5px 0px;
-    font-size: 12px;
-}
-
-.h8 {
-    margin: 6px 0px;
-    font-size: 10px;
-    
-}
-
-.prueba {
-    text-align: justify;
-}
 
 .center {
     margin: 40px auto;

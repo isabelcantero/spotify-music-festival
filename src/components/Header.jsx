@@ -17,9 +17,6 @@ export default function Header() {
             <Link href="/tracklist">Tracklist</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/test">Test</Link>
-          </li>
-          <li className={styles.navItem}>
             <LogButton />
           </li>
         </ul>
