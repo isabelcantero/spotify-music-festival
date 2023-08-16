@@ -1,4 +1,4 @@
-import styles from "./styles/cartelartists.module.css"
+import styles from "./styles/nodata.module.css"
 
 export default function NoData() {
   <div className={styles.center}>

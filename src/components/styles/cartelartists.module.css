@@ -4,17 +4,19 @@
     background-size: 100% 100%;
 
     width: calc(0.85 * (100vh - 190px));
-    height: calc(100vh - 190px);
-    /*width: 525px;
-    height: 600px;*/
+
+    /*height: calc(100vh - 190px);*/
+    height: calc(90vh - 14vh);
+    
     font-size: 20px;
     display: flex; 
     flex-direction: column; 
-    padding: 50px;
+    padding: 7vh;
 }
 
 .title {
-    font-size: 42px;
+    /*font-size: 42px;*/
+    font-size: 180%;
     margin: 0 auto;
     margin-bottom: 20px;
     overflow-wrap: break-word;
@@ -37,26 +39,24 @@
 
 .h1 {
     margin: -2px 0px;
-    font-size: 36px;
+    /*font-size: 36px;*/
+    font-size: 180%;
 }
 
 .h2 {
     margin: -1px 0px;
-    font-size: 28px;
+    /*font-size: 28px;*/
+    font-size: 140%;
 }
 
 .h3 {
     margin: 1px 0px;
-    font-size: 22px;
+    /*font-size: 22px;*/
+    font-size: 110%;
 }
 
 .h4 {
     margin: 2px 0px;
-    font-size: 18px;
-}
-
-
-.center {
-    margin: 40px auto;
-    text-align: center;
+    /*font-size: 18px;*/
+    font-size: 90%;
 }
